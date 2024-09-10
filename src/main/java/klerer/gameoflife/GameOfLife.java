@@ -1,8 +1,7 @@
-package klerer.conways;
+package klerer.gameoflife;
 
-public class GameOfLife
-{
-    static int[][] nextGeneration(int[][] grid, int rows, int columns) {
+public class GameOfLife {
+    int[][] nextGeneration(int[][] grid, int rows, int columns) {
         int[][] future = new int[rows][columns];
 
         for (int l = 0; l < rows; l++) {

@@ -1,8 +1,7 @@
-package klerer.conways;
+package klerer.gameoflife;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-import klerer.conways.GameOfLife;
 import org.junit.jupiter.api.Test;
 
 public class GameOfLifeTest {
@@ -16,16 +15,18 @@ public class GameOfLifeTest {
                 {0, 1, 0}
         };
 
-        // expected result after one generation
+        // when
         int[][] expectedGrid = {
                 {0, 0, 0},
                 {1, 1, 1},
                 {0, 0, 0}
         };
 
+        GameOfLife gameOfLife = new GameOfLife();
+
         int rows = initialGrid.length;
         int columns = initialGrid[0].length;
-        int[][] futureGrid = GameOfLife.nextGeneration(initialGrid, rows, columns);
+        int[][] futureGrid = gameOfLife.nextGeneration(initialGrid, rows, columns);
 
         // then
         assertArrayEquals(expectedGrid, futureGrid);
