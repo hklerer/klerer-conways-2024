@@ -1,4 +1,8 @@
+package klerer.conways;
+
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+
+import klerer.conways.GameOfLife;
 import org.junit.jupiter.api.Test;
 
 public class GameOfLifeTest {
