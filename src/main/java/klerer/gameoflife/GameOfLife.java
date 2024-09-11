@@ -1,7 +1,23 @@
 package klerer.gameoflife;
 
 public class GameOfLife {
-    int[][] nextGeneration(int[][] grid, int rows, int columns) {
+    private int[][] grid;
+
+    public void setGrid(int[][] initialGrid) {
+        this.grid = initialGrid;
+    }
+
+    public int[][] getGrid() {
+        return grid;
+    }
+
+    public int[][] nextGeneration() {
+        if (grid == null) {
+            throw new IllegalStateException("Grid has not been initialized");
+        }
+
+        int rows = grid.length;
+        int columns = grid[0].length;
         int[][] future = new int[rows][columns];
 
         for (int l = 0; l < rows; l++) {
@@ -10,26 +26,27 @@ public class GameOfLife {
 
                 for (int i = -1; i <= 1; i++) {
                     for (int j = -1; j <= 1; j++) {
-                        if ((l + i >= 0 && l + i < rows) && (m + j >= 0 && m + j < columns)) {
+                        if ((l + i >= 0 && l + i < rows) && (m + j >= 0 && m + j < columns) && !(i == 0 && j == 0)) {
                             aliveNeighbours += grid[l + i][m + j];
                         }
                     }
                 }
 
-                aliveNeighbours -= grid[l][m];
-
-                if ((grid[l][m] == 1) && (aliveNeighbours < 2)) {
-                    future[l][m] = 0;
-                } else if ((grid[l][m] == 1) && (aliveNeighbours > 3)) {
-                    future[l][m] = 0;
-                } else if ((grid[l][m] == 0) && (aliveNeighbours == 3)) {
-                    future[l][m] = 1;
+                if (grid[l][m] == 1) {
+                    if (aliveNeighbours < 2 || aliveNeighbours > 3) {
+                        future[l][m] = 0;
+                    } else {
+                        future[l][m] = 1;
+                    }
                 } else {
-                    future[l][m] = grid[l][m];
+                    if (aliveNeighbours == 3) {
+                        future[l][m] = 1;
+                    }
                 }
             }
         }
 
+        grid = future;
         return future;
     }
 }

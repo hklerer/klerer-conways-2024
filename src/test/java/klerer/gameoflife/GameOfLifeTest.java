@@ -8,12 +8,16 @@ public class GameOfLifeTest {
 
     @Test
     public void testNextGeneration() {
+        GameOfLife gameOfLife = new GameOfLife();
+
         // given
         int[][] initialGrid = {
                 {0, 1, 0},
                 {0, 1, 0},
                 {0, 1, 0}
         };
+
+        gameOfLife.setGrid(initialGrid);
 
         // when
         int[][] expectedGrid = {
@@ -22,11 +26,7 @@ public class GameOfLifeTest {
                 {0, 0, 0}
         };
 
-        GameOfLife gameOfLife = new GameOfLife();
-
-        int rows = initialGrid.length;
-        int columns = initialGrid[0].length;
-        int[][] futureGrid = gameOfLife.nextGeneration(initialGrid, rows, columns);
+        int[][] futureGrid = gameOfLife.nextGeneration();
 
         // then
         assertArrayEquals(expectedGrid, futureGrid);
