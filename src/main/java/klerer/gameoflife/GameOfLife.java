@@ -29,9 +29,7 @@ public class GameOfLife {
                 }
 
                 if (grid[l][m] == 1) {
-                    if (aliveNeighbours < 2 || aliveNeighbours > 3) {
-                        future[l][m] = 0;
-                    } else {
+                    if (aliveNeighbours == 2 || aliveNeighbours == 3) {
                         future[l][m] = 1;
                     }
                 } else {
