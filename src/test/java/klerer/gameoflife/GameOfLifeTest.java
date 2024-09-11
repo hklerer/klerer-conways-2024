@@ -8,8 +8,6 @@ public class GameOfLifeTest {
 
     @Test
     public void testNextGeneration() {
-        GameOfLife gameOfLife = new GameOfLife();
-
         // given
         int[][] initialGrid = {
                 {0, 1, 0},
@@ -17,7 +15,7 @@ public class GameOfLifeTest {
                 {0, 1, 0}
         };
 
-        gameOfLife.setGrid(initialGrid);
+        GameOfLife gameOfLife = new GameOfLife(initialGrid);
 
         // when
         int[][] expectedGrid = {

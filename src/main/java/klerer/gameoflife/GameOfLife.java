@@ -3,7 +3,7 @@ package klerer.gameoflife;
 public class GameOfLife {
     private int[][] grid;
 
-    public void setGrid(int[][] initialGrid) {
+    public GameOfLife(int[][] initialGrid) {
         this.grid = initialGrid;
     }
 
@@ -12,10 +12,6 @@ public class GameOfLife {
     }
 
     public int[][] nextGeneration() {
-        if (grid == null) {
-            throw new IllegalStateException("Grid has not been initialized");
-        }
-
         int rows = grid.length;
         int columns = grid[0].length;
         int[][] future = new int[rows][columns];
