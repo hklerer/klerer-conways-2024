@@ -15,7 +15,7 @@ public class GameOfLifeTest {
                 {0, 1, 0}
         };
 
-        GameOfLife gameOfLife = new GameOfLife(initialGrid);
+        GameOfLife gameOfLife = new GameOfLife(50, 50);
 
         // when
         int[][] expectedGrid = {
