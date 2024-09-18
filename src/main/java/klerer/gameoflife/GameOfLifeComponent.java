@@ -8,6 +8,7 @@ import java.awt.event.MouseMotionListener;
 
 public class GameOfLifeComponent extends JComponent {
     private final GameOfLife gameOfLife;
+    private final int cellSize = 20;
 
     public GameOfLifeComponent(GameOfLife gameOfLife) {
         this.gameOfLife = gameOfLife;
@@ -15,7 +16,17 @@ public class GameOfLifeComponent extends JComponent {
         addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-               // gameOfLife.put(e.getX(), e.getY(), 10, 10, .3);
+                int cellX = e.getX() / cellSize;
+                int cellY = e.getY() / cellSize;
+
+                int currentState = gameOfLife.getCell(cellX, cellY);
+                if (currentState == 1) {
+                    gameOfLife.setCell(cellX, cellY, 0);
+                } else {
+                    gameOfLife.setCell(cellX, cellY, 1);
+                }
+
+                repaint();
             }
 
             @Override
@@ -41,7 +52,6 @@ public class GameOfLifeComponent extends JComponent {
         addMouseMotionListener(new MouseMotionListener() {
             @Override
             public void mouseDragged(MouseEvent e) {
-                //gameOfLife.put(e.getX(), e.getY(), 10, 10, .3);
             }
 
             @Override

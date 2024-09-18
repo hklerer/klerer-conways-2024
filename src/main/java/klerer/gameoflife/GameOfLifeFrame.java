@@ -2,6 +2,8 @@ package klerer.gameoflife;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class GameOfLifeFrame extends JFrame {
     private final GameOfLife gameOfLife = new GameOfLife(50, 50);
@@ -23,11 +25,22 @@ public class GameOfLifeFrame extends JFrame {
 
         blockPattern();
 
-        timer = new Timer(500, e -> {
-            gameOfLife.nextGeneration();
-            repaint();
+        playButton.addActionListener(e -> {
+            timer = new Timer(1000, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    gameOfLife.nextGeneration();
+                    repaint();
+                }
+            });
+            timer.start();
         });
-        timer.start();
+
+        pauseButton.addActionListener(e -> {
+            if (timer != null && timer.isRunning()) {
+                timer.stop();
+            }
+        });
     }
 
     private void blockPattern() {
