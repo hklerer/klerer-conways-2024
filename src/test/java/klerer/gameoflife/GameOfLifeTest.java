@@ -9,21 +9,19 @@ public class GameOfLifeTest {
     @Test
     public void testNextGeneration() {
         // given
-        int[][] initialGrid = {
-                {0, 1, 0},
-                {0, 1, 0},
-                {0, 1, 0}
-        };
+        GameOfLife gameOfLife = new GameOfLife(3, 3);
 
-        GameOfLife gameOfLife = new GameOfLife(initialGrid);
+        gameOfLife.setCell(0, 1, 1);
+        gameOfLife.setCell(1, 1, 1);
+        gameOfLife.setCell(2, 1, 1);
 
-        // when
         int[][] expectedGrid = {
                 {0, 0, 0},
                 {1, 1, 1},
                 {0, 0, 0}
         };
 
+        // when
         int[][] futureGrid = gameOfLife.nextGeneration();
 
         // then

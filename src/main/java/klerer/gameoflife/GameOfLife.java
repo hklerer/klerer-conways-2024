@@ -2,9 +2,30 @@ package klerer.gameoflife;
 
 public class GameOfLife {
     private int[][] grid;
+    public int width;
+    public int height;
 
-    public GameOfLife(int[][] initialGrid) {
-        this.grid = initialGrid;
+
+    public GameOfLife(int width, int height) {
+        grid = new int[width][height];
+        this.width = width;
+        this.height = height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getCell(int x, int y) {
+        return grid[x][y];
+    }
+
+    public void setCell(int width, int height, int value) {
+        grid[width][height] = value;
     }
 
     public int[][] getGrid() {
@@ -43,4 +64,5 @@ public class GameOfLife {
         grid = future;
         return future;
     }
+
 }
