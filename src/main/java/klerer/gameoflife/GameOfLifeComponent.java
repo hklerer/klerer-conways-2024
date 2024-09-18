@@ -2,9 +2,8 @@ package klerer.gameoflife;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 
 public class GameOfLifeComponent extends JComponent {
     private final GameOfLife gameOfLife;
@@ -13,7 +12,7 @@ public class GameOfLifeComponent extends JComponent {
     public GameOfLifeComponent(GameOfLife gameOfLife) {
         this.gameOfLife = gameOfLife;
 
-        addMouseListener(new MouseListener() {
+        addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 int cellX = e.getX() / cellSize;
@@ -27,36 +26,6 @@ public class GameOfLifeComponent extends JComponent {
                 }
 
                 repaint();
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-
-            }
-        });
-        addMouseMotionListener(new MouseMotionListener() {
-            @Override
-            public void mouseDragged(MouseEvent e) {
-            }
-
-            @Override
-            public void mouseMoved(MouseEvent e) {
-
             }
         });
     }
@@ -72,18 +41,17 @@ public class GameOfLifeComponent extends JComponent {
         for (int y = 0; y < gameOfLife.getHeight(); y++) {
             for (int x = 0; x < gameOfLife.getWidth(); x++) {
                 if (gameOfLife.getCell(x, y) == 1) {
-                    g.fillRect(x * 20, y * 20, 20, 20);
+                    g.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
                 }
             }
         }
 
         g.setColor(Color.darkGray);
-        for (int y = 0; y < gameOfLife.getHeight(); y++) {
-            for (int x = 0; x < gameOfLife.getWidth(); x++) {
-                g.drawRect(x * 20, y * 20, 20, 20);
-            }
+        for (int y = 0; y <= gameOfLife.getHeight(); y++) {
+            g.drawLine(0, y * cellSize, gameOfLife.getWidth() * cellSize, y * cellSize);
+        }
+        for (int x = 0; x <= gameOfLife.getWidth(); x++) {
+            g.drawLine(x * cellSize, 0, x * cellSize, gameOfLife.getHeight() * cellSize);
         }
     }
 }
-
-
