@@ -33,7 +33,10 @@ public class RleParser {
                         break;
                     case '!':
                         return;
+                    default:
+                        throw new IllegalArgumentException("Unexpected character: " + c);
                 }
+
                 count = 0;
             }
         }
