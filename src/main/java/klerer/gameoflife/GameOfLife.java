@@ -32,8 +32,8 @@ public class GameOfLife {
     }
 
     public void loadPatternFromRLE(String rleData) {
-        RLEParser parser = new RLEParser();
-        parser.loadRLE(this, rleData);
+        RleParser parser = new RleParser();
+        parser.loadRle(this, rleData);
     }
 
     public int[][] nextGeneration() {
