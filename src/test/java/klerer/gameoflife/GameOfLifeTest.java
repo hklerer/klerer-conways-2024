@@ -27,4 +27,24 @@ public class GameOfLifeTest {
         // then
         assertArrayEquals(expectedGrid, futureGrid);
     }
+
+    @Test
+    public void testLoadPatternFromRLE() {
+        // given
+        GameOfLife gameOfLife = new GameOfLife(3, 3);
+
+        String rleString = "bo$ob!";
+
+        // when
+        gameOfLife.loadPatternFromRLE(rleString);
+
+        int[][] expectedGrid = {
+                {0, 1, 0},
+                {1, 0, 0},
+                {0, 0, 0}
+        };
+
+        // then
+        assertArrayEquals(expectedGrid, gameOfLife.getGrid());
+    }
 }

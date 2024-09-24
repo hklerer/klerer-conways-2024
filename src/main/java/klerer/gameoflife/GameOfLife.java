@@ -5,7 +5,6 @@ public class GameOfLife {
     public int width;
     public int height;
 
-
     public GameOfLife(int width, int height) {
         grid = new int[width][height];
         this.width = width;
@@ -30,6 +29,11 @@ public class GameOfLife {
 
     public int[][] getGrid() {
         return grid;
+    }
+
+    public void loadPatternFromRLE(String rleData) {
+        RLEParser parser = new RLEParser();
+        parser.loadRLE(this, rleData);
     }
 
     public int[][] nextGeneration() {
@@ -64,5 +68,4 @@ public class GameOfLife {
         grid = future;
         return future;
     }
-
 }
