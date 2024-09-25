@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 public class GameOfLifeTest {
 
     @Test
-    public void testNextGeneration() {
+    public void nextGeneration() {
         // given
         GameOfLife gameOfLife = new GameOfLife(3, 3);
 
@@ -26,5 +26,25 @@ public class GameOfLifeTest {
 
         // then
         assertArrayEquals(expectedGrid, futureGrid);
+    }
+
+    @Test
+    public void loadPatternFromRle() {
+        // given
+        GameOfLife gameOfLife = new GameOfLife(3, 3);
+
+        String rleString = "bo$ob!";
+
+        // when
+        gameOfLife.loadPatternFromRle(rleString);
+
+        int[][] expectedGrid = {
+                {0, 1, 0},
+                {1, 0, 0},
+                {0, 0, 0}
+        };
+
+        // then
+        assertArrayEquals(expectedGrid, gameOfLife.getGrid());
     }
 }
