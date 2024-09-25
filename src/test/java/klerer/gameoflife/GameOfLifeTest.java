@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 public class GameOfLifeTest {
 
     @Test
-    public void testNextGeneration() {
+    public void nextGeneration() {
         // given
         GameOfLife gameOfLife = new GameOfLife(3, 3);
 
@@ -29,7 +29,7 @@ public class GameOfLifeTest {
     }
 
     @Test
-    public void testLoadPatternFromRLE() {
+    public void loadPatternFromRLE() {
         // given
         GameOfLife gameOfLife = new GameOfLife(3, 3);
 
