@@ -31,7 +31,7 @@ public class GameOfLife {
         return grid;
     }
 
-    public void loadPatternFromRLE(String rleData) {
+    public void loadPatternFromRle(String rleData) {
         RleParser parser = new RleParser();
         parser.loadRle(this, rleData);
     }

@@ -36,7 +36,7 @@ public class GameOfLifeTest {
         String rleString = "bo$ob!";
 
         // when
-        gameOfLife.loadPatternFromRLE(rleString);
+        gameOfLife.loadPatternFromRle(rleString);
 
         int[][] expectedGrid = {
                 {0, 1, 0},
