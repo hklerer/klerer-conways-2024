@@ -29,7 +29,7 @@ public class GameOfLifeTest {
     }
 
     @Test
-    public void loadPatternFromRLE() {
+    public void loadPatternFromRle() {
         // given
         GameOfLife gameOfLife = new GameOfLife(3, 3);
 
