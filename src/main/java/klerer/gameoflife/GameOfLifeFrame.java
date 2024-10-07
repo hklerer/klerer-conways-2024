@@ -65,23 +65,24 @@ public class GameOfLifeFrame extends JFrame {
             String clipboardContent = (String) clipboard.getData(DataFlavor.stringFlavor);
 
             if (clipboardContent.startsWith("http")) {
-                loadRLEFromURL(clipboardContent);
+                loadRleFromURL(clipboardContent);
             } else if (new File(clipboardContent).exists()) {
-                loadRLEFromFile(clipboardContent);
+                loadRleFromFile(clipboardContent);
             } else {
-                loadRLEFromText(clipboardContent);
+                loadRleFromText(clipboardContent);
             }
 
         } catch (UnsupportedFlavorException | IOException ex) {
             ex.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Clipboard does not contain valid RLE data", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,
+                    "Clipboard does not contain valid RLE data", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    private void loadRLEFromURL(String urlString) {
+    private void loadRleFromURL(String urlString) {
         try (InputStream inputStream = new URL(urlString).openStream()) {
             String rleContent = IOUtils.toString(inputStream, "UTF-8");
-            loadRLEIntoGameOfLife(rleContent);
+            loadRleIntoGameOfLife(rleContent);
         } catch (MalformedURLException e) {
             JOptionPane.showMessageDialog(this, "Invalid URL", "Error", JOptionPane.ERROR_MESSAGE);
         } catch (IOException e) {
@@ -89,20 +90,20 @@ public class GameOfLifeFrame extends JFrame {
         }
     }
 
-    private void loadRLEFromFile(String filePath) {
+    private void loadRleFromFile(String filePath) {
         try (InputStream inputStream = new FileInputStream(new File(filePath))) {
             String rleContent = IOUtils.toString(inputStream, "UTF-8");
-            loadRLEIntoGameOfLife(rleContent);
+            loadRleIntoGameOfLife(rleContent);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(this, "Failed to load RLE from file", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    private void loadRLEFromText(String rleContent) {
-        loadRLEIntoGameOfLife(rleContent);
+    private void loadRleFromText(String rleContent) {
+        loadRleIntoGameOfLife(rleContent);
     }
 
-    private void loadRLEIntoGameOfLife(String rleContent) {
+    private void loadRleIntoGameOfLife(String rleContent) {
         int gridSize = Math.max(100, Math.max(gameOfLife.getWidth(), gameOfLife.getHeight()));
         gameOfLife.resizeGrid(gridSize, gridSize);
         gameOfLife.loadRLEInCenter(rleContent);
