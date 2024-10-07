@@ -31,20 +31,24 @@ public class GameOfLifeTest {
     @Test
     public void loadPatternFromRle() {
         // given
-        GameOfLife gameOfLife = new GameOfLife(3, 3);
+        GameOfLife gameOfLife = new GameOfLife(5, 5);
 
         String rleString = "bo$ob!";
 
         // when
-        gameOfLife.loadPatternFromRle(rleString);
+        gameOfLife.loadRleInCenter(rleString);
 
         int[][] expectedGrid = {
-                {0, 1, 0},
-                {1, 0, 0},
-                {0, 0, 0}
+                {0, 0, 1, 0, 0},
+                {1, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0},
+                {0, 0, 1, 0, 0},
+                {0, 0, 0, 0, 0}
         };
 
         // then
         assertArrayEquals(expectedGrid, gameOfLife.getGrid());
     }
 }
+
+
