@@ -47,7 +47,7 @@ public class GameOfLife {
         this.grid = newGrid;
     }
 
-    public void loadRLEInCenter(String rleData) {
+    public void loadRleInCenter(String rleData) {
         RleParser parser = new RleParser();
 
         for (int x = 0; x < width; x++) {

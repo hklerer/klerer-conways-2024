@@ -65,7 +65,7 @@ public class GameOfLifeFrame extends JFrame {
             String clipboardContent = (String) clipboard.getData(DataFlavor.stringFlavor);
 
             if (clipboardContent.startsWith("http")) {
-                loadRleFromURL(clipboardContent);
+                loadRleFromUrl(clipboardContent);
             } else if (new File(clipboardContent).exists()) {
                 loadRleFromFile(clipboardContent);
             } else {
@@ -79,7 +79,7 @@ public class GameOfLifeFrame extends JFrame {
         }
     }
 
-    private void loadRleFromURL(String urlString) {
+    private void loadRleFromUrl(String urlString) {
         try (InputStream inputStream = new URL(urlString).openStream()) {
             String rleContent = IOUtils.toString(inputStream, "UTF-8");
             loadRleIntoGameOfLife(rleContent);
@@ -106,7 +106,7 @@ public class GameOfLifeFrame extends JFrame {
     private void loadRleIntoGameOfLife(String rleContent) {
         int gridSize = Math.max(100, Math.max(gameOfLife.getWidth(), gameOfLife.getHeight()));
         gameOfLife.resizeGrid(gridSize, gridSize);
-        gameOfLife.loadRLEInCenter(rleContent);
+        gameOfLife.loadRleInCenter(rleContent);
         repaint();
     }
 }

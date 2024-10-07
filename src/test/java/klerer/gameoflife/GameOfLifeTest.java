@@ -36,7 +36,7 @@ public class GameOfLifeTest {
         String rleString = "bo$ob!";
 
         // when
-        gameOfLife.loadRLEInCenter(rleString);
+        gameOfLife.loadRleInCenter(rleString);
 
         int[][] expectedGrid = {
                 {0, 0, 1, 0, 0},
