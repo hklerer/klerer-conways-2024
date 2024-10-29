@@ -11,16 +11,20 @@ import java.net.URL;
 import org.apache.commons.io.IOUtils;
 
 public class GameOfLifeFrame extends JFrame {
-    private final GameOfLife gameOfLife = new GameOfLife(50, 50);  // Initialize with a smaller grid
+    GameOfLife game = new GameOfLife(300, 300);
+
     private Timer timer;
 
+    private RleParser rleParser;
+
     public GameOfLifeFrame() {
+        GameOfLifeComponent gameOfLifeComponent = new GameOfLifeComponent(game, 20);
+        GameOfLifeController gameOfLifeController = new GameOfLifeController(game, gameOfLifeComponent, rleParser);
         setTitle("Game Of Life Frame");
         setSize(600, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
-        GameOfLifeComponent gameComponent = new GameOfLifeComponent(gameOfLife);
-        add(gameComponent, BorderLayout.CENTER);
+        add(gameOfLifeComponent, BorderLayout.CENTER);
         JPanel buttonPanel = new JPanel();
         JButton playButton = new JButton("play");
         JButton pauseButton = new JButton("pause");
@@ -36,7 +40,7 @@ public class GameOfLifeFrame extends JFrame {
             timer = new Timer(1000, new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    gameOfLife.nextGeneration();
+                    game.nextGeneration();
                     repaint();
                 }
             });
@@ -53,10 +57,10 @@ public class GameOfLifeFrame extends JFrame {
     }
 
     private void blockPattern() {
-        gameOfLife.setCell(1, 1, 1);
-        gameOfLife.setCell(1, 2, 1);
-        gameOfLife.setCell(2, 1, 1);
-        gameOfLife.setCell(2, 2, 1);
+        game.setCell(1, 1, 1);
+        game.setCell(1, 2, 1);
+        game.setCell(2, 1, 1);
+        game.setCell(2, 2, 1);
     }
 
     private void handlePasteAction() {
@@ -104,9 +108,9 @@ public class GameOfLifeFrame extends JFrame {
     }
 
     private void loadRleIntoGameOfLife(String rleContent) {
-        int gridSize = Math.max(100, Math.max(gameOfLife.getWidth(), gameOfLife.getHeight()));
-        gameOfLife.resizeGrid(gridSize, gridSize);
-        gameOfLife.loadRleInCenter(rleContent);
+        int gridSize = Math.max(100, Math.max(game.getWidth(), game.getHeight()));
+        game.resizeGrid(gridSize, gridSize);
+        game.loadRleInCenter(rleContent);
         repaint();
     }
 }

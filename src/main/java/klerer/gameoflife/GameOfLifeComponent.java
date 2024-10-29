@@ -7,10 +7,16 @@ import java.awt.event.MouseEvent;
 
 public class GameOfLifeComponent extends JComponent {
     private final GameOfLife gameOfLife;
-    private final int cellSize = 20;
+    private final int cellSize;
 
-    public GameOfLifeComponent(GameOfLife gameOfLife) {
+    public int getCellSize() {
+        return cellSize;
+    }
+
+
+    public GameOfLifeComponent(GameOfLife gameOfLife, int cellSize) {
         this.gameOfLife = gameOfLife;
+        this.cellSize = cellSize;
 
         addMouseListener(new MouseAdapter() {
             @Override
